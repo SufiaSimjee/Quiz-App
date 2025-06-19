@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import android.view.TextureView
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,10 +17,12 @@ class Question : AppCompatActivity() , View.OnClickListener {
 
     private lateinit var binding : ActivityQuestionBinding
 
-    private val currentPosition = 1
+    private var currentPosition = 1
     private lateinit var questionsList: MutableList<Question>
 
     private var selectedOptionPosition = 0
+    private lateinit var currentQuestion: Question
+    private var answer = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,7 @@ class Question : AppCompatActivity() , View.OnClickListener {
         questionsList = Constants.getQuestions()
         Log.d("Questions List" , "${questionsList.size}")
 
-        setQuestion()
+        showNextQuestion()
 
         binding.textViewOptionOne.setOnClickListener(this)
         binding.textViewOptionTwo.setOnClickListener(this)
@@ -42,8 +43,12 @@ class Question : AppCompatActivity() , View.OnClickListener {
         setContentView(binding.root)
     }
 
-    private fun setQuestion() {
+    private fun showNextQuestion() {
+
+        resetOption()
+
         val question = questionsList[currentPosition - 1]
+
         binding.imageFlag.setImageResource(question.image)
         binding.progressBar.progress = currentPosition
         binding.textViewProgress.text = "$currentPosition/${binding.progressBar.max}"
@@ -57,7 +62,11 @@ class Question : AppCompatActivity() , View.OnClickListener {
             binding.buttonCheck.text = "FINISH"
         }else {
             binding.buttonCheck.text = "CHECK"
+            currentQuestion = questionsList[currentPosition]
         }
+
+        currentPosition++
+        answer = false
     }
 
     private fun resetOption() {
@@ -88,6 +97,67 @@ class Question : AppCompatActivity() , View.OnClickListener {
         )
     }
 
+    private fun checkAnswer() {
+        answer = true
+
+        if(selectedOptionPosition == currentQuestion.correctAnswer) {
+            when(selectedOptionPosition) {
+                1 -> {
+                    binding.textViewOptionOne.background = ContextCompat.getDrawable(
+                        this , R.drawable.correct_default_option
+                    )
+                }
+
+                2 -> {
+                    binding.textViewOptionTwo.background = ContextCompat.getDrawable(
+                        this , R.drawable.correct_default_option
+                    )
+                }
+
+                3 -> {
+                    binding.textViewOptionThree.background = ContextCompat.getDrawable(
+                        this , R.drawable.correct_default_option
+                    )
+                }
+
+                4 -> {
+                    binding.textViewOptionFour.background = ContextCompat.getDrawable(
+                        this , R.drawable.correct_default_option
+                    )
+                }
+            }
+        } else {
+
+            when(selectedOptionPosition) {
+                1 -> {
+                    binding.textViewOptionOne.background = ContextCompat.getDrawable(
+                        this , R.drawable.incorrect_default_option
+                    )
+                }
+
+                2 -> {
+                    binding.textViewOptionTwo.background = ContextCompat.getDrawable(
+                        this , R.drawable.incorrect_default_option
+                    )
+                }
+
+                3 -> {
+                    binding.textViewOptionThree.background = ContextCompat.getDrawable(
+                        this , R.drawable.incorrect_default_option
+                    )
+                }
+
+                4 -> {
+                    binding.textViewOptionFour.background = ContextCompat.getDrawable(
+                        this , R.drawable.incorrect_default_option
+                    )
+                }
+            }
+        }
+
+        binding.buttonCheck.text = "Next"
+    }
+
     override fun onClick(view: View?) {
         when(view?.id) {
             binding.textViewOptionOne.id -> {
@@ -107,10 +177,12 @@ class Question : AppCompatActivity() , View.OnClickListener {
             }
 
             binding.buttonCheck.id -> {
-
+                if (!answer) {
+                    checkAnswer()
+                } else {
+                    showNextQuestion()
+                }
             }
         }
     }
-
-
 }
