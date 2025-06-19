@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Question"
+    android:background="@drawable/bg"
     android:contentDescription="@string/Content_Description">
 
     <LinearLayout
@@ -34,6 +35,38 @@
             android:layout_height="200dp"
             android:contentDescription="@string/country_flag"
             tools:src = "@drawable/china"/>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            android:gravity="center"
+            >
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="5"
+                android:indeterminate="false"
+                android:minHeight="50dp"
+                android:progressTint="#0D47A1"
+                tools:progress="4"/>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/text_view_progress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                tools:text="0/5"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
