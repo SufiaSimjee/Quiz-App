@@ -68,6 +68,63 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/text_view_option_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:background = "@drawable/border_default_option"
+            tools:text = "Option 1"/>
+
+        <TextView
+            android:id="@+id/text_view_option_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:background = "@drawable/border_default_option"
+            tools:text = "Option 2"/>
+
+        <TextView
+            android:id="@+id/text_view_option_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:background = "@drawable/border_default_option"
+            tools:text = "Option 3"/>
+
+        <TextView
+            android:id="@+id/text_view_option_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginTop="12dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:background = "@drawable/border_default_option"
+            tools:text = "Option 4"/>
+
+        <Button
+            android:id="@+id/button_check"
+            android:layout_marginTop="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check"
+            android:minHeight="50dp"
+            android:backgroundTint="#0D47A1"
+            />
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
