@@ -1,59 +1,59 @@
 package com.example.quizapp.utils
 
 import com.example.quizapp.R
-import com.example.quizapp.model.Question
+import com.example.quizapp.model.QuizQuestion
 
 object Constants {
 
-    fun getQuestions() : MutableList<Question> {
+    fun getQuestions() : MutableList<QuizQuestion> {
 
-        val questions = mutableListOf<Question>()
+        val quizQuestions = mutableListOf<QuizQuestion>()
 
-        val quest1 = Question(
+        val quest1 = QuizQuestion(
             1 , "Which country does this flag belong to ?", R.drawable.india ,
             "India" , "Myanmar" ,
             "Thailand" , "Malaysia",
             1
         )
 
-        questions.add(quest1)
+        quizQuestions.add(quest1)
 
-        val quest2 = Question(
+        val quest2 = QuizQuestion(
             1 , "Which country does this flag belong to ?", R.drawable.china ,
             "India" , "Malaysia" ,
             "China" , "Myanmar",
             3
         )
 
-        questions.add(quest2)
+        quizQuestions.add(quest2)
 
-        val quest3 = Question(
+        val quest3 = QuizQuestion(
             1 , "Which country does this flag belong to ?", R.drawable.mexico,
             "America" , "Mexico" ,
             "Myanmar" , "Finland",
             2
         )
 
-        questions.add(quest3)
+        quizQuestions.add(quest3)
 
-        val quest4 = Question(
+        val quest4 = QuizQuestion(
             1 , "Which country does this flag belong to ?", R.drawable.japan ,
             "Myanmar" , "Singapore" ,
             "Mexico" , "Japan",
             4
         )
 
-        questions.add(quest4)
+        quizQuestions.add(quest4)
 
-        val quest5 = Question(
+        val quest5 = QuizQuestion(
             1 , "Which country does this flag belong to ?", R.drawable.myanmar ,
             "Myanmar" , "Japan" ,
             "Thailand" , "Singapore",
             1
         )
 
-        questions.add(quest5)
+        quizQuestions.add(quest5)
 
-        return questions
+        return quizQuestions
     }
 }

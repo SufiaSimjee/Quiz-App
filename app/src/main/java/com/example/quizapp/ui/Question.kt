@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.quizapp.R
 import com.example.quizapp.databinding.ActivityQuestionBinding
-import com.example.quizapp.model.Question
+import com.example.quizapp.model.QuizQuestion
 import com.example.quizapp.utils.Constants
 
 class Question : AppCompatActivity() , View.OnClickListener {
@@ -18,10 +18,10 @@ class Question : AppCompatActivity() , View.OnClickListener {
     private lateinit var binding : ActivityQuestionBinding
 
     private var currentPosition = 1
-    private lateinit var questionsList: MutableList<Question>
+    private lateinit var questionsList: MutableList<QuizQuestion>
 
     private var selectedOptionPosition = 0
-    private lateinit var currentQuestion: Question
+    private lateinit var currentQuizQuestion: QuizQuestion
     private var answer = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +62,7 @@ class Question : AppCompatActivity() , View.OnClickListener {
             binding.buttonCheck.text = "FINISH"
         }else {
             binding.buttonCheck.text = "CHECK"
-            currentQuestion = questionsList[currentPosition]
+            currentQuizQuestion = questionsList[currentPosition -1]
         }
 
         currentPosition++
@@ -70,6 +70,9 @@ class Question : AppCompatActivity() , View.OnClickListener {
     }
 
     private fun resetOption() {
+
+        selectedOptionPosition = 0
+
         val options = mutableListOf<TextView>()
         options.add(binding.textViewOptionOne)
         options.add(binding.textViewOptionTwo)
@@ -100,7 +103,7 @@ class Question : AppCompatActivity() , View.OnClickListener {
     private fun checkAnswer() {
         answer = true
 
-        if(selectedOptionPosition == currentQuestion.correctAnswer) {
+        if(selectedOptionPosition == currentQuizQuestion.correctAnswer) {
             when(selectedOptionPosition) {
                 1 -> {
                     binding.textViewOptionOne.background = ContextCompat.getDrawable(
