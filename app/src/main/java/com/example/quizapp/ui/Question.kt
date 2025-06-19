@@ -2,17 +2,20 @@ package com.example.quizapp.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizapp.databinding.ActivityQuestionBinding
 import com.example.quizapp.model.Question
 import com.example.quizapp.utils.Constants
 
-class Question : AppCompatActivity() {
+class Question : AppCompatActivity() , View.OnClickListener {
 
     private lateinit var binding : ActivityQuestionBinding
 
     private val currentPosition = 1
     private lateinit var questionsList: MutableList<Question>
+
+    private var selectedOptionPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,18 @@ class Question : AppCompatActivity() {
         binding.textViewOptionTwo.text = question.optionTwo
         binding.textViewOptionThree.text = question.optionThree
         binding.textViewOptionFour.text = question.optionFour
+
+        if(currentPosition == questionsList.size) {
+            binding.buttonCheck.text = "FINISH"
+        }else {
+            binding.buttonCheck.text = "CHECK"
+        }
+    }
+
+    override fun onClick(view: View?) {
+        when(view?.id) {
+
+        }
     }
 
 }
