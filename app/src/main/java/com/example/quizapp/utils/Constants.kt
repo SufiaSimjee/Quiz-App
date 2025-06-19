@@ -10,7 +10,7 @@ object Constants {
         val questions = mutableListOf<Question>()
 
         val quest1 = Question(
-            1 , "Which country does this flag belong to", R.drawable.india ,
+            1 , "Which country does this flag belong to ?", R.drawable.india ,
             "India" , "Myanmar" ,
             "Thailand" , "Malaysia",
             1
@@ -19,7 +19,7 @@ object Constants {
         questions.add(quest1)
 
         val quest2 = Question(
-            1 , "Which country does this flag belong to", R.drawable.china ,
+            1 , "Which country does this flag belong to ?", R.drawable.china ,
             "India" , "Malaysia" ,
             "China" , "Myanmar",
             3
@@ -28,7 +28,7 @@ object Constants {
         questions.add(quest2)
 
         val quest3 = Question(
-            1 , "Which country does this flag belong to", R.drawable.mexico,
+            1 , "Which country does this flag belong to ?", R.drawable.mexico,
             "America" , "Mexico" ,
             "Myanmar" , "Finland",
             2
@@ -37,7 +37,7 @@ object Constants {
         questions.add(quest3)
 
         val quest4 = Question(
-            1 , "Which country does this flag belong to", R.drawable.japan ,
+            1 , "Which country does this flag belong to ?", R.drawable.japan ,
             "Myanmar" , "Singapore" ,
             "Mexico" , "Japan",
             4
@@ -46,7 +46,7 @@ object Constants {
         questions.add(quest4)
 
         val quest5 = Question(
-            1 , "Which country does this flag belong to", R.drawable.myanmar ,
+            1 , "Which country does this flag belong to ?", R.drawable.myanmar ,
             "Myanmar" , "Japan" ,
             "Thailand" , "Singapore",
             1

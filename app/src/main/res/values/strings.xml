@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuizApp</string>
+    <string name="Content_Description">This is a quiz app</string>
+    <string name="country_flag">Country flag</string>
 </resources>
