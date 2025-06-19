@@ -28,7 +28,7 @@ object Constants {
         questions.add(quest2)
 
         val quest3 = Question(
-            1 , "Which country does this flag belong to", R.drawable.mexico ,
+            1 , "Which country does this flag belong to", R.drawable.mexico,
             "America" , "Mexico" ,
             "Myanmar" , "Finland",
             2
