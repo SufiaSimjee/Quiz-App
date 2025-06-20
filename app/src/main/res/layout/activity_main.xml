@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="Start"
                 android:padding="10dp"
-                android:backgroundTint="#033DA4"/>
+                android:backgroundTint="#BC7745"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
