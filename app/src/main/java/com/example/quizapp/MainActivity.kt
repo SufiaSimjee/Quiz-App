@@ -6,6 +6,7 @@ import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizapp.databinding.ActivityMainBinding
 import com.example.quizapp.ui.Question
+import com.example.quizapp.utils.Constants
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,8 +23,9 @@ class MainActivity : AppCompatActivity() {
 
             if(!TextUtils.isEmpty(userName)) {
                 Intent(this@MainActivity , Question::class.java).also {
+                    it.putExtra(Constants.USER_NAME , userName)
                     startActivity(it)
-                    finish() // close the current activity
+                    finish()
                 }
             } else {
                 binding.etName.error = "Please enter a name"

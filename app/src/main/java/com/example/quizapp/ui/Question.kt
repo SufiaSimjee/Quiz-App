@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat
 import com.example.quizapp.R
 import com.example.quizapp.databinding.ActivityQuestionBinding
 import com.example.quizapp.model.QuizQuestion
-import com.example.quizapp.ui.Result
 import com.example.quizapp.utils.Constants
 
 class Question : AppCompatActivity() , View.OnClickListener {
@@ -25,19 +24,26 @@ class Question : AppCompatActivity() , View.OnClickListener {
     private lateinit var currentQuizQuestion: QuizQuestion
     private var answer = false;
 
+    private lateinit var name: String
+    private var score = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityQuestionBinding.inflate(layoutInflater)
-
-        questionsList = Constants.getQuestions()
-        showNextQuestion()
 
         binding.textViewOptionOne.setOnClickListener(this)
         binding.textViewOptionTwo.setOnClickListener(this)
         binding.textViewOptionThree.setOnClickListener(this)
         binding.textViewOptionFour.setOnClickListener(this)
         binding.buttonCheck.setOnClickListener(this)
+
+        questionsList = Constants.getQuestions()
+        showNextQuestion()
+
+        if(intent.hasExtra(Constants.USER_NAME)) {
+            name = intent.getStringExtra(Constants.USER_NAME)!!
+        }
 
         setContentView(binding.root)
     }
@@ -67,6 +73,9 @@ class Question : AppCompatActivity() , View.OnClickListener {
         }else {
             binding.buttonCheck.text = "FINISH"
             Intent(this , Result::class.java).also {
+                it.putExtra(Constants.USER_NAME , name)
+                it.putExtra(Constants.SCORE , score)
+                it.putExtra(Constants.TOTAL_QUESTIONS , questionsList.size)
                 startActivity(it)
             }
         }
@@ -149,7 +158,8 @@ class Question : AppCompatActivity() , View.OnClickListener {
         answer = true
 
         if(selectedAnswer == currentQuizQuestion.correctAnswer) {
-            checkAnswer(selectedAnswer)
+            score ++
+            highlightAnswer(selectedAnswer)
 
         } else {
 
@@ -187,11 +197,11 @@ class Question : AppCompatActivity() , View.OnClickListener {
     private fun showCorrectAnswer() {
         selectedAnswer = currentQuizQuestion.correctAnswer
 
-        checkAnswer(selectedAnswer)
+        highlightAnswer(selectedAnswer)
     }
 
     // to check correct answer
-    private fun checkAnswer(answer : Int) {
+    private fun highlightAnswer(answer : Int) {
         when(answer) {
             1 -> {
                 binding.textViewOptionOne.background = ContextCompat.getDrawable(
