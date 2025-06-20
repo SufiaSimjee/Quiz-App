@@ -1,5 +1,6 @@
 package com.example.quizapp.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -10,13 +11,14 @@ import androidx.core.content.ContextCompat
 import com.example.quizapp.R
 import com.example.quizapp.databinding.ActivityQuestionBinding
 import com.example.quizapp.model.QuizQuestion
+import com.example.quizapp.ui.Result
 import com.example.quizapp.utils.Constants
 
 class Question : AppCompatActivity() , View.OnClickListener {
 
     private lateinit var binding : ActivityQuestionBinding
 
-    private var currentQuestion = 0
+    private var questionCounter = 0
     private lateinit var questionsList: MutableList<QuizQuestion>
 
     private var selectedAnswer = 0
@@ -43,27 +45,33 @@ class Question : AppCompatActivity() , View.OnClickListener {
     // functions for showing quiz question
     private fun showNextQuestion() {
 
-        resetOption()
+        if(questionCounter < questionsList.size) {
 
-        val question = questionsList[currentQuestion]
+            currentQuizQuestion = questionsList[questionCounter]
 
-        binding.imageFlag.setImageResource(question.image)
-        binding.progressBar.progress = currentQuestion + 1
-        binding.textViewProgress.text = "${currentQuestion + 1} /${binding.progressBar.max}"
-        binding.questionTextView.text = question.question
-        binding.textViewOptionOne.text = question.optionOne
-        binding.textViewOptionTwo.text = question.optionTwo
-        binding.textViewOptionThree.text = question.optionThree
-        binding.textViewOptionFour.text = question.optionFour
-
-        if(currentQuestion == questionsList.size - 1) {
-            binding.buttonCheck.text = "FINISH"
-        }else {
             binding.buttonCheck.text = "CHECK"
-            currentQuizQuestion = questionsList[currentQuestion]
+
+            resetOption()
+
+            val question = questionsList[questionCounter]
+
+            binding.imageFlag.setImageResource(question.image)
+            binding.progressBar.progress = questionCounter + 1
+            binding.textViewProgress.text = "${questionCounter + 1} /${binding.progressBar.max}"
+            binding.questionTextView.text = question.question
+            binding.textViewOptionOne.text = question.optionOne
+            binding.textViewOptionTwo.text = question.optionTwo
+            binding.textViewOptionThree.text = question.optionThree
+            binding.textViewOptionFour.text = question.optionFour
+
+        }else {
+            binding.buttonCheck.text = "FINISH"
+            Intent(this , Result::class.java).also {
+                startActivity(it)
+            }
         }
 
-        currentQuestion++
+        questionCounter++
         answer = false
 
         binding.buttonCheck.isEnabled = false
@@ -141,31 +149,8 @@ class Question : AppCompatActivity() , View.OnClickListener {
         answer = true
 
         if(selectedAnswer == currentQuizQuestion.correctAnswer) {
-            when(selectedAnswer) {
-                1 -> {
-                    binding.textViewOptionOne.background = ContextCompat.getDrawable(
-                        this , R.drawable.correct_default_option
-                    )
-                }
+            checkAnswer(selectedAnswer)
 
-                2 -> {
-                    binding.textViewOptionTwo.background = ContextCompat.getDrawable(
-                        this , R.drawable.correct_default_option
-                    )
-                }
-
-                3 -> {
-                    binding.textViewOptionThree.background = ContextCompat.getDrawable(
-                        this , R.drawable.correct_default_option
-                    )
-                }
-
-                4 -> {
-                    binding.textViewOptionFour.background = ContextCompat.getDrawable(
-                        this , R.drawable.correct_default_option
-                    )
-                }
-            }
         } else {
 
             when(selectedAnswer) {
@@ -202,7 +187,12 @@ class Question : AppCompatActivity() , View.OnClickListener {
     private fun showCorrectAnswer() {
         selectedAnswer = currentQuizQuestion.correctAnswer
 
-        when(selectedAnswer) {
+        checkAnswer(selectedAnswer)
+    }
+
+    // to check correct answer
+    private fun checkAnswer(answer : Int) {
+        when(answer) {
             1 -> {
                 binding.textViewOptionOne.background = ContextCompat.getDrawable(
                     this , R.drawable.correct_default_option
