@@ -14,18 +14,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="16dp"
         android:text="Quiz App"
-        android:textColor="#0D47A1"
-        android:textSize="35sp"
+        android:textColor="@color/black"
+        android:textSize="38sp"
         android:textStyle="bold"
-        android:padding="10dp"/>
+        android:padding="12dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
         app:cardBackgroundColor="@color/white"
+        android:layout_marginBottom="10dp"
         android:padding="20dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -70,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="Start"
                 android:padding="10dp"
-                android:backgroundTint="#0D47A1"/>
+                android:backgroundTint="#033DA4"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
