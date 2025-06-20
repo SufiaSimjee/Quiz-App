@@ -48,7 +48,7 @@ class Question : AppCompatActivity() , View.OnClickListener {
         val question = questionsList[currentQuestion]
 
         binding.imageFlag.setImageResource(question.image)
-        binding.progressBar.progress = currentQuestion
+        binding.progressBar.progress = currentQuestion + 1
         binding.textViewProgress.text = "${currentQuestion + 1} /${binding.progressBar.max}"
         binding.questionTextView.text = question.question
         binding.textViewOptionOne.text = question.optionOne
@@ -56,7 +56,7 @@ class Question : AppCompatActivity() , View.OnClickListener {
         binding.textViewOptionThree.text = question.optionThree
         binding.textViewOptionFour.text = question.optionFour
 
-        if(currentQuestion == questionsList.size) {
+        if(currentQuestion == questionsList.size - 1) {
             binding.buttonCheck.text = "FINISH"
         }else {
             binding.buttonCheck.text = "CHECK"
@@ -93,6 +93,7 @@ class Question : AppCompatActivity() , View.OnClickListener {
 
     // highlight selected options
     private fun selectedOption(textView: TextView , selectedOptionNumber : Int) {
+
         resetOption()
 
         selectedAnswer = selectedOptionNumber
@@ -100,7 +101,7 @@ class Question : AppCompatActivity() , View.OnClickListener {
         textView.setTextColor(Color.parseColor("#363A43"))
         textView.setTypeface(textView.typeface , Typeface.BOLD)
         textView.background = ContextCompat.getDrawable(
-            this , R.drawable.select_default_option
+            this , R.drawable.user_select_default_option
         )
     }
 
